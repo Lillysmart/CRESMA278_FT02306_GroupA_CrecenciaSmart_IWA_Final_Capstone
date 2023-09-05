@@ -1,5 +1,5 @@
-matches = books
-page = 1;
+ matches = books
+ page = 1;
 
 if (!books && !Array.isArray(books)) throw new Error('Source required') 
 if (!range && range.length < 2) throw new Error('Range must be an array with two numbers')
@@ -13,7 +13,21 @@ night = {
     dark: '255, 255, 255',
     light: '10, 10, 20',
 }
-
+ const books = [
+    {
+      author: "Author 1",
+      image: "image1.jpg",
+      title: "Book 1",
+      id: 1,
+    },
+    {
+      author: "Author 2",
+      image: "image2.jpg",
+      title: "Book 2",
+      id: 2,
+    },
+    // Add more book objects here
+  ];
 fragment = document.createDocumentFragment()
 const extracted = books.slice(0, 36)
 
