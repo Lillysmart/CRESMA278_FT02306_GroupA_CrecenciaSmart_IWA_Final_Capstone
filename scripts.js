@@ -22,18 +22,18 @@ const night = {
 const fragment = document.createDocumentFragment()
 const createPreview = (book)=> {
     const preview = document.createElement('div');
-    //preview.classList.add('preview')
+    preview.classList.add('preview')
 
     const image = document.createElement('img');
-    image.classList.add('preview__image');
+    //image.classList.add('preview__image');
   image.src = book.image; 
 
   
   const info = document.createElement('div');
-  info.classList.add('preview__info');
+  //info.classList.add('preview__info');
 
   const title = document.createElement('h3');
-  title.classList.add('preview__title'); // Add a class to the title element (if needed)
+  //title.classList.add('preview__title'); // Add a class to the title element (if needed)
   title.textContent = book.title; // Set the title text
 
   const author = document.createElement('div');
@@ -47,24 +47,19 @@ const createPreview = (book)=> {
 
   return preview;
    }
-   preview.innerHTML = /* html */ `
-   <div class=('preview__image'>${title}</div>
-   
-   <dl class="order__details">
-       <div class="order__row">
-           <dt>Table:</dt>
-           <dd class="order__value" data-order-table>${table}</dd>
-       </div>
+   /*fragment.innerHTML = /* html */ /*`
+   <div class='preview'>
+   <h3 class='preview__title'>${books.title}</h3>
+   <img src='${books.image}' class='preview__image'>
+   </div>
 
-       <div class="order__row">
-           <dt>Ordered:</dt>
-           <dd class="order__value">${hours}:${minutes}</dd>
-       </div>
-       `
+   <div class='preview__info'>
+
+       ` */
   
 
    const extracted= books
-   for (let i = 0; i < books.length; i++) {
+   for (let i = 0; i < extracted.splice(0-36); i++) {
    console.log (extracted)
      const { author, image, title, id }=  extracted[i] 
         const preview = createPreview({
@@ -76,7 +71,7 @@ const createPreview = (book)=> {
     
         fragment.appendChild(preview)
     }
-    bookShelf = document.querySelector("[data-list-items]")
+   const bookShelf = document.querySelector("[data-list-items]")
     bookShelf.appendChild(fragment)
 /*
     bookShelf.innerHTML = ''
