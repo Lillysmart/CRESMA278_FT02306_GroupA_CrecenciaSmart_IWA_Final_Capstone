@@ -42,7 +42,8 @@ for ({ author, image, title, id }; extracted; i++) {
     fragment.appendChild(preview)
 }
 
-data-list-items.appendChild(fragment)
+//data-list-items.appendChild(fragment)
+const booksList= document.querySelector("[data-list-items]")
 
 genres = document.createDocumentFragment()
 element = document.createElement('option')
