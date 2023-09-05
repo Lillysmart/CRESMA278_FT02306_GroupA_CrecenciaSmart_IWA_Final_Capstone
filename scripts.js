@@ -2,7 +2,11 @@
  const  page = 1;
 
   import { books } from './data.js';
- 
+  import { authors } from './data.js';
+
+ let author =authors
+ author=books.id
+ console.log (author)
 let range =[
     2, 'hi',6
 ]
@@ -38,7 +42,7 @@ const createPreview = (book)=> {
 
   const author = document.createElement('div');
   author.classList.add('preview__author'); // Add a class to the author element (if needed)
-  author.textContent = book.author;
+  author.textContent = author;
 
   info.appendChild(title);
   info.appendChild(author);
@@ -58,8 +62,8 @@ const createPreview = (book)=> {
        ` */
   
 
-   const extracted= books
-   for (let i = 0; i < extracted.splice(0-36); i++) {
+   const extracted= books.slice(0, 100)
+   for (let i = 0; i < extracted.length; i++) {
    console.log (extracted)
      const { author, image, title, id }=  extracted[i] 
         const preview = createPreview({
