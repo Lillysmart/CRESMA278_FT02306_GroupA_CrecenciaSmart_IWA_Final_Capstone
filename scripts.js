@@ -1,7 +1,8 @@
 //matches = books
  const  page = 1;
+
   import { books } from './data.js';
-   console.log(books)
+ 
 let range =[
     2, 'hi',6
 ]
