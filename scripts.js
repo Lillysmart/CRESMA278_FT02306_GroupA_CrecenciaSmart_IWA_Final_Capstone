@@ -63,18 +63,9 @@ const createPreview = (book)=> {
 
   return preview;
    }
-   /*fragment.innerHTML = /* html */ /*`
-   <div class='preview'>
-   <h3 class='preview__title'>${books.title}</h3>
-   <img src='${books.image}' class='preview__image'>
-   </div>
-
-   <div class='preview__info'>
-
-       ` */
   
 
-   const extracted= books.slice(0, 100)
+   const extracted=source.slice(range[0], range[1]
    for (let i = 0; i < extracted.length; i++) {
    //console.log (extracted)
      const { author, image, title, id }=  extracted[i] 
@@ -87,21 +78,23 @@ const createPreview = (book)=> {
     
         fragment.appendChild(preview)
     }
+
+
    const bookShelf = document.querySelector("[data-list-items]")
     bookShelf.appendChild(fragment)
-/*
-    bookShelf.innerHTML = ''
-    const fragment = document.createDocumentFragment()
-    const extracted = source.slice(range[0], range[1])
 
-    for ({ author, image, title, id }; extracted; i++) {
+    bookShelf.innerHTML = ''
+    fragment = document.createDocumentFragment()
+     extracted= )
+
+    for (let i=1;{ author, image, title, id }=extracted; i++) {
         const { author: authorId, id, image, title } = props
 
         element = document.createElement('button')
         element.classList = 'preview'
         element.setAttribute('data-preview', id)
 
-        element.innerHTML = /* html */ /*`
+        element.innerHTML = /* html */ `
             <img
                 class="preview__image"
                 src="${image}"
