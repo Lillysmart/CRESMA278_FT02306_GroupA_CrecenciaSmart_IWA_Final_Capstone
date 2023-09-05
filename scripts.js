@@ -1,7 +1,14 @@
- matches = books
- page = 1;
+matches = books
+  page = 1;
+   import { books } from "./data";
+   console.log(books)
+let range =[
+    2, 'hi',6
+]
 
-if (!books && !Array.isArray(books)) throw new Error('Source required') 
+ 
+
+if (books && Array.isArray(books)===false) throw new Error('Source required') 
 if (!range && range.length < 2) throw new Error('Range must be an array with two numbers')
 
 day = {
@@ -13,25 +20,11 @@ night = {
     dark: '255, 255, 255',
     light: '10, 10, 20',
 }
- const books = [
-    {
-      author: "Author 1",
-      image: "image1.jpg",
-      title: "Book 1",
-      id: 1,
-    },
-    {
-      author: "Author 2",
-      image: "image2.jpg",
-      title: "Book 2",
-      id: 2,
-    },
-    // Add more book objects here
-  ];
+
 fragment = document.createDocumentFragment()
 const extracted = books.slice(0, 36)
 
-for ({ author, image, title, id }; extracted; i++) {
+for (const { author, image, title, id } of extracted) {
     const preview = createPreview({
         author,
         id,
@@ -44,13 +37,14 @@ for ({ author, image, title, id }; extracted; i++) {
 
 //data-list-items.appendChild(fragment)
 const booksList= document.querySelector("[data-list-items]")
+booksList.appendChild(fragment)
 
 genres = document.createDocumentFragment()
 element = document.createElement('option')
 element.value = 'any'
 element = 'All Genres'
 genres.appendChild(element)
-
+/*
 for ([id, name]; Object.entries(genres); i++) {
     document.createElement('option')
     element.value = value
@@ -84,7 +78,7 @@ data-list-button = "Show more (books.length - BOOKS_PER_PAGE)"
 
 data-list-button.disabled = !(matches.length - [page * BOOKS_PER_PAGE] > 0)
 
-data-list-button.innerHTML = /* html */ [
+data-list-button.innerHTML = /* html */ /*[
     '<span>Show more</span>',
     '<span class="list__remaining"> (${matches.length - [page * BOOKS_PER_PAGE] > 0 ? matches.length - [page * BOOKS_PER_PAGE] : 0})</span>',
 ]
@@ -139,7 +133,7 @@ data-search-form.click(filters) {
         element.classList = 'preview'
         element.setAttribute('data-preview', id)
 
-        element.innerHTML = /* html */ `
+        element.innerHTML = /* html */ /*`
             <img
                 class="preview__image"
                 src="${image}"
@@ -159,7 +153,7 @@ data-search-form.click(filters) {
     remaining === hasRemaining ? initial : 0
     data-list-button.disabled = initial > 0
 
-    data-list-button.innerHTML = /* html */ `
+    data-list-button.innerHTML = /* html *//*`
         <span>Show more</span>
         <span class="list__remaining"> (${remaining})</span>
     `
@@ -197,4 +191,4 @@ data-list-items.click() {
     
     data-list-subtitle === '${authors[active.author]} (${Date(active.published).year})'
     data-list-description === active.description
-}
+}*/
