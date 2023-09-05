@@ -22,7 +22,7 @@ const night = {
 const fragment = document.createDocumentFragment()
 const createPreview = (book)=> {
     const preview = document.createElement('div');
-    preview.classList.add('preview')
+    //preview.classList.add('preview')
 
     const image = document.createElement('img');
     image.classList.add('preview__image');
@@ -47,6 +47,21 @@ const createPreview = (book)=> {
 
   return preview;
    }
+   preview.innerHTML = /* html */ `
+   <div class=('preview__image'>${title}</div>
+   
+   <dl class="order__details">
+       <div class="order__row">
+           <dt>Table:</dt>
+           <dd class="order__value" data-order-table>${table}</dd>
+       </div>
+
+       <div class="order__row">
+           <dt>Ordered:</dt>
+           <dd class="order__value">${hours}:${minutes}</dd>
+       </div>
+       `
+  
 
    const extracted= books
    for (let i = 0; i < books.length; i++) {
