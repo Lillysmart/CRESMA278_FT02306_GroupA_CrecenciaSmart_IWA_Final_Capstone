@@ -65,7 +65,7 @@ const createPreview = (book)=> {
    }
   
 
-   const extracted=source.slice(range[0], range[1]
+   const extracted= books.slice(0, 100)
    for (let i = 0; i < extracted.length; i++) {
    //console.log (extracted)
      const { author, image, title, id }=  extracted[i] 
@@ -79,13 +79,13 @@ const createPreview = (book)=> {
         fragment.appendChild(preview)
     }
 
-
+/*
    const bookShelf = document.querySelector("[data-list-items]")
     bookShelf.appendChild(fragment)
 
     bookShelf.innerHTML = ''
     fragment = document.createDocumentFragment()
-     extracted= )
+     extracted= 
 
     for (let i=1;{ author, image, title, id }=extracted; i++) {
         const { author: authorId, id, image, title } = props
@@ -94,7 +94,7 @@ const createPreview = (book)=> {
         element.classList = 'preview'
         element.setAttribute('data-preview', id)
 
-        element.innerHTML = /* html */ `
+        element.innerHTML = /* html */ /*`
             <img
                 class="preview__image"
                 src="${image}"
@@ -107,9 +107,25 @@ const createPreview = (book)=> {
         `
 
         fragment.appendChild(element)
+    }*/
+    import { BOOKS_PER_PAGE } from './data.js';
+    documentElement.style.setProperty('--color-dark', css[v].dark);
+    documentElement.style.setProperty('--color-light', css[v].light);
+    showMoreButton = Show (books.length - BOOKS_PER_PAGE)
+
+    const showMoreButton= document.querySelector('[data-list-button]')
+
+
+    if (!matches.length - [page * BOOKS_PER_PAGE] > 0){
+        showMoreButton.disabled
     }
     
-    /*
+    data-list-button.innerHTML = /* html */ [
+        '<span>Show more</span>',
+        '<span class="list__remaining"> (${matches.length - [page * BOOKS_PER_PAGE] > 0 ? matches.length - [page * BOOKS_PER_PAGE] : 0})</span>',
+    ]
+    
+    
     genres = document.createDocumentFragment()
     element = document.createElement('option')
     element.value = 'any'
@@ -142,17 +158,6 @@ const createPreview = (book)=> {
     
     data-settings-theme.value === window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'day'
     v = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches? 'night' | 'day'
-    
-    documentElement.style.setProperty('--color-dark', css[v].dark);
-    documentElement.style.setProperty('--color-light', css[v].light);
-    data-list-button = "Show more (books.length - BOOKS_PER_PAGE)"
-    
-    data-list-button.disabled = !(matches.length - [page * BOOKS_PER_PAGE] > 0)
-    
-    data-list-button.innerHTML = /* html */ /*[
-        '<span>Show more</span>',
-        '<span class="list__remaining"> (${matches.length - [page * BOOKS_PER_PAGE] > 0 ? matches.length - [page * BOOKS_PER_PAGE] : 0})</span>',
-    ]
     
     data-search-cancel.click() { data-search-overlay.open === false }
     data-settings-cancel.click() { querySelect(data-settings-overlay).open === false }
