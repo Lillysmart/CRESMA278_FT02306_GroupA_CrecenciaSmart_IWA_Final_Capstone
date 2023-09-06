@@ -174,21 +174,6 @@ saveButton.addEventListener("click",handleFormSubmit)
  const dataSettingForm =document.querySelector('[data-settings-form]')
  console.log (dataSettingForm)
 
- 
- 
- /*dataSettingOverlay.submit; {
-    //preventDefault()
-    const formData = new FormData(event.target)
-    const result = Object.fromEntries(formData)
-    document.documentElement.style.setProperty('--color-dark', css[result.theme].dark);
-    document.documentElement.style.setProperty('--color-light', css[result.theme].light);
-   
-}
-
-    //data-settings-theme.value === window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'day'
-   // v = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches? 'night' | 'day';
-    
-
     const showMoreButton= document.querySelector('[data-list-button]')  
   
 showMoreButton.innerHTML ='show more'
@@ -199,10 +184,25 @@ showMoreButton.innerHTML ='show more'
     if ((!matches.length - page * BOOKS_PER_PAGE > 0)){
         showMoreButton.disabled=true
     }
-    
-
+   const dataListActive =document.querySelector ('[data-list-active]')
+   console.log (dataListActive)
+    const overlayPreview= document.querySelector('.overlay__preview')
+ const handelPreview=()=>{
+dataListActive.show()
+}
+ window.addEventListener('click', handelPreview)
 
     /*
+
+        (if !active return)
+        data-list-active.open === true
+        data-list-blur + data-list-image === active.image
+        data-list-title === active.title
+        
+       {data-list-subtitle === '${authors[active.author]} (${Date(active.published).year})'
+        data-list-description === active.description
+
+
     `[
         '<span>Show more</span>',
         '<span class="list__remaining"> (${matches.length - [page * BOOKS_PER_PAGE] > 0 ? matches.length - [page * BOOKS_PER_PAGE] : 0})</span>',
@@ -299,13 +299,5 @@ showMoreButton.innerHTML ='show more'
                 if (singleBook.id === id) active = singleBook
             } 
         }
-
-        (if !active return)
-        data-list-active.open === true
-        data-list-blur + data-list-image === active.image
-        data-list-title === active.title
-        
-       {data-list-subtitle === '${authors[active.author]} (${Date(active.published).year})'
-        data-list-description === active.description
     }*/
     
