@@ -118,11 +118,21 @@ const nightLightColor = night.light;
 
     document.documentElement.style.setProperty('--color-dark',dayDarkColor );
     document.documentElement.style.setProperty('--color-light',nightLightColor);
- const headerSettingButton = document.querySelector('[]')
+ const headerSettingButton = document.querySelector('[data-header-settings]')
 
-    const dataSettingOverlay = document.querySelector('[data-settings-overlay]')
-    const dataSettingForm =document.querySelector(['data-settings-form'])
+ const dataSettingOverlay = document.querySelector('[data-settings-overlay]')
+ const dataSettingForm =document.querySelector(['data-settings-form'])
 
+const openDataSettingsOverlay =(e)=>{
+    
+    dataSettingOverlay.show()
+}
+
+headerSettingButton.addEventListener("click", openDataSettingsOverlay)
+
+   
+
+/*
     const dataSettingsCancel = dataSettingForm.querySelector('[data-settings-cancel]');
 dataSettingsCancel.addEventListener('click', () => {
   .close(); // Close the settings overlay
