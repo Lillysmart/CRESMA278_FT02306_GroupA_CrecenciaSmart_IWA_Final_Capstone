@@ -13,15 +13,6 @@ let range =[
 if (!books && Array.isArray(books)) throw new Error('Source required') 
 if (!range && range.length < 2) throw new Error('Range must be an array with two numbers')
 
-const day = {
-    dark: '10, 10, 20',
-    light: '255, 255, 255',
-}
-
-const night = {
-    dark: '255, 255, 255',
-    light: '10, 10, 20',
-}
 const fragment = document.createDocumentFragment()
 const createPreview = (book)=> {
     const preview = document.createElement('div');
@@ -112,59 +103,101 @@ console.log (searchbar)
 
     import { BOOKS_PER_PAGE } from './data.js';
 
-
-const dayDarkColor = day.dark;
-const nightLightColor = night.light;
-
-    document.documentElement.style.setProperty('--color-dark',dayDarkColor );
-    document.documentElement.style.setProperty('--color-light',nightLightColor);
  const headerSettingButton = document.querySelector('[data-header-settings]')
-
  const dataSettingOverlay = document.querySelector('[data-settings-overlay]')
- const dataSettingForm =document.querySelector(['data-settings-form'])
-
-const openDataSettingsOverlay =(e)=>{
-    
-    dataSettingOverlay.show()
-}
+const openDataSettingsOverlay =()=>{
+    dataSettingOverlay.show()}
 
 headerSettingButton.addEventListener("click", openDataSettingsOverlay)
 
-   
+  const closeDatasettingoverlay =() =>{
+    dataSettingOverlay.removeAttribute('open');}
+  
+  const dataSettingsCancel = document.querySelector('[data-settings-cancel]');
+ dataSettingsCancel.addEventListener('click', closeDatasettingoverlay)
 
-/*
-    const dataSettingsCancel = dataSettingForm.querySelector('[data-settings-cancel]');
-dataSettingsCancel.addEventListener('click', () => {
-  .close(); // Close the settings overlay
-});
 
-    data-settings-cancel.click() { querySelect(data-settings-overlay).open === false }
-    data-settings-form.submit() { actions.settings.submit }
+
+ const day = {
+    dark: '10, 10, 20',
+    light: '255, 255, 255',
+}
+
+const night = {
+    dark: '255, 255, 255',
+    light: '10, 10, 20',}
+
+const dayDarkColor = day.dark 
+const dayLightColor= day.light
+const nightLightColor= night.light
+const nightDarkColor= night.dark 
+
+
+ console.log (dayDarkColor)
+ console.log (nightLightColor)
+
+ 
+ // Get references to the select element and the root HTML element
+const themeSelect = document.querySelector('[data-settings-theme]');
+const rootElement = document.documentElement;
+
+// Function to handle theme change
+const handleThemeChange = () => {
+    const selectedTheme = themeSelect.value;
+    
+    // Update the CSS variables based on the selected theme
+    if (selectedTheme === 'day') {
+      rootElement.style.setProperty('--color-light', dayLightColor);
+      rootElement.style.setProperty('--color-dark', dayDarkColor);
+    } else if (selectedTheme === 'night') {
+      rootElement.style.setProperty('--color-light', nightLightColor);
+      rootElement.style.setProperty('--color-dark', nightDarkColor);
+    }
+  };
+  
+  const buttons = document.querySelectorAll('.overlay__button_primary');
+  const saveButton = buttons[0]
+ saveButton.addEventListener("click", () => console.log('hi'))
+// Add an event listener to the theme select element
+
+
+themeSelect.addEventListener('change',console.log ('i was pressed'));
+
+// Optionally, you can initialize the theme based on user preference (e.g., from local storage)
+// const userPreferredTheme = localStorage.getItem('theme');
+// if (userPreferredTheme) {
+//   themeSelect.value = userPreferredTheme;
+//   handleThemeChange();
+// }
+
     
     
-    data-settings-theme.value === window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'day'
-    v = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches? 'night' | 'day'*/
+ const dataSettingForm =document.querySelector('[data-settings-form]')
+    
+    //data-settings-theme.value === window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'day'
+   // v = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches? 'night' | 'day';
     
 
-    const showMoreButton= document.querySelector('[data-list-button]')
-    //showMoreButton = Show (books.length - BOOKS_PER_PAGE)
-console.log (showMoreButton)
+    const showMoreButton= document.querySelector('[data-list-button]')  
+  
 showMoreButton.innerHTML ='show more'
-//classList='list__reamining'
+
+    //showMoreButton = Show (books.length - BOOKS_PER_PAGE)
+
 
     if ((!matches.length - page * BOOKS_PER_PAGE > 0)){
         showMoreButton.disabled=true
     }
     
-  /*  
+    /*
     `[
         '<span>Show more</span>',
         '<span class="list__remaining"> (${matches.length - [page * BOOKS_PER_PAGE] > 0 ? matches.length - [page * BOOKS_PER_PAGE] : 0})</span>',
-    ]`
-    */
+    ]`*/
+    
 
 
-    /*
+   /* 
     genres = document.createDocumentFragment()
     element = document.createElement('option')
     element.value = 'any'
@@ -230,16 +263,16 @@ showMoreButton.innerHTML ='show more'
         data-list-items.appendChild(fragments)
         initial === matches.length - [page * BOOKS_PER_PAGE]
         remaining === hasRemaining ? initial : 0
-        data-list-button.disabled = initial > 0
+        data-list-button.disabled = initial > 0/*
     
-        data-list-button.innerHTML = /* html */ /* `
+        data-list-button.innerHTML = /* html */ /*`
             <span>Show more</span>
             <span class="list__remaining"> (${remaining})</span>
         `
     
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+       /* window.scrollTo({ top: 0, behavior: 'smooth' });
         data-search-overlay.open = false
-    }
+    
     
     data-settings-overlay.submit; {
         preventDefault()
@@ -256,18 +289,19 @@ showMoreButton.innerHTML ='show more'
     
         for (node; pathArray; i++) {
             if active break;
-            const previewId = node?.dataset?.preview
+            const previewId = node?.dataset?.preview}
         
             for (const singleBook of books) {
                 if (singleBook.id === id) active = singleBook
             } 
         }
-        
-        if !active return
+
+        (if !active return)
         data-list-active.open === true
         data-list-blur + data-list-image === active.image
         data-list-title === active.title
         
-        data-list-subtitle === '${authors[active.author]} (${Date(active.published).year})'
+       {data-list-subtitle === '${authors[active.author]} (${Date(active.published).year})'
         data-list-description === active.description
     }*/
+    
