@@ -1,11 +1,11 @@
-//matches = books
+const matches = books
  const  page = 1;
 
   import { books } from './data.js';
   import { authors } from './data.js';
  
  
- console.log (authors)
+ //console.log (authors)
 let range =[
     2, 'hi',6
 ]
@@ -51,7 +51,7 @@ const createPreview = (book)=> {
     }
   }
   
-  console.log(books); // This will give you books with the author property added
+  //console.log(books); // This will give you books with the author property added
   
  
   author.textContent =book.id;
@@ -79,14 +79,15 @@ const createPreview = (book)=> {
         fragment.appendChild(preview)
     }
 
-/*
+const searchbar =document.querySelector(".header__icon ")
+console.log (searchbar)
    const bookShelf = document.querySelector("[data-list-items]")
     bookShelf.appendChild(fragment)
 
-    bookShelf.innerHTML = ''
-    fragment = document.createDocumentFragment()
-     extracted= 
-
+    //bookShelf.innerHTML = ''
+    //fragment = document.createDocumentFragment()
+     //extracted= 
+/*
     for (let i=1;{ author, image, title, id }=extracted; i++) {
         const { author: authorId, id, image, title } = props
 
@@ -94,7 +95,7 @@ const createPreview = (book)=> {
         element.classList = 'preview'
         element.setAttribute('data-preview', id)
 
-        element.innerHTML = /* html */ /*`
+        element.innerHTML = /* html `
             <img
                 class="preview__image"
                 src="${image}"
@@ -108,24 +109,52 @@ const createPreview = (book)=> {
 
         fragment.appendChild(element)
     }*/
+
     import { BOOKS_PER_PAGE } from './data.js';
-    documentElement.style.setProperty('--color-dark', css[v].dark);
-    documentElement.style.setProperty('--color-light', css[v].light);
-    showMoreButton = Show (books.length - BOOKS_PER_PAGE)
+
+
+const dayDarkColor = day.dark;
+const nightLightColor = night.light;
+
+    document.documentElement.style.setProperty('--color-dark',dayDarkColor );
+    document.documentElement.style.setProperty('--color-light',nightLightColor);
+ const headerSettingButton = document.querySelector('[]')
+
+    const dataSettingOverlay = document.querySelector('[data-settings-overlay]')
+    const dataSettingForm =document.querySelector(['data-settings-form'])
+
+    const dataSettingsCancel = dataSettingForm.querySelector('[data-settings-cancel]');
+dataSettingsCancel.addEventListener('click', () => {
+  .close(); // Close the settings overlay
+});
+
+    data-settings-cancel.click() { querySelect(data-settings-overlay).open === false }
+    data-settings-form.submit() { actions.settings.submit }
+    
+    
+    data-settings-theme.value === window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'day'
+    v = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches? 'night' | 'day'*/
+    
 
     const showMoreButton= document.querySelector('[data-list-button]')
+    //showMoreButton = Show (books.length - BOOKS_PER_PAGE)
+console.log (showMoreButton)
+showMoreButton.innerHTML ='show more'
+//classList='list__reamining'
 
-
-    if (!matches.length - [page * BOOKS_PER_PAGE] > 0){
-        showMoreButton.disabled
+    if ((!matches.length - page * BOOKS_PER_PAGE > 0)){
+        showMoreButton.disabled=true
     }
     
-    data-list-button.innerHTML = /* html */ [
+  /*  
+    `[
         '<span>Show more</span>',
         '<span class="list__remaining"> (${matches.length - [page * BOOKS_PER_PAGE] > 0 ? matches.length - [page * BOOKS_PER_PAGE] : 0})</span>',
-    ]
-    
-    
+    ]`
+    */
+
+
+    /*
     genres = document.createDocumentFragment()
     element = document.createElement('option')
     element.value = 'any'
@@ -155,20 +184,9 @@ const createPreview = (book)=> {
     }
     
     data-search-authors.appendChild(authors)
-    
-    data-settings-theme.value === window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'day'
-    v = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches? 'night' | 'day'
-    
     data-search-cancel.click() { data-search-overlay.open === false }
-    data-settings-cancel.click() { querySelect(data-settings-overlay).open === false }
-    data-settings-form.submit() { actions.settings.submit }
-    data-list-close.click() { data-list-active.open === false }
     
-    data-list-button.click() {
-        document.querySelector([data-list-items]).appendChild(createPreviewsFragment(matches, page x BOOKS_PER_PAGE, {page + 1} x BOOKS_PER_PAGE]))
-        actions.list.updateRemaining()
-        page = page + 1
-    }
+    data-list-close.click() { data-list-active.open === false }
     
     data-header-search.click() {
         data-search-overlay.open === true ;
