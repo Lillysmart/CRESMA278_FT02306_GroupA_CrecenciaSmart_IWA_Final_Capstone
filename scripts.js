@@ -30,7 +30,7 @@ const createPreview = (book)=> {
   //title.classList.add('preview__title'); // Add a class to the title element (if needed)
   title.textContent = book.title; // Set the title text
 
-  const author = document.createElement('div');
+  const author = document.createElement('p');
   author.classList.add('preview__author');
   
   
@@ -44,8 +44,9 @@ const createPreview = (book)=> {
   
   //console.log(books); // This will give you books with the author property added
   
- 
-  author.textContent =book.id;
+  // book.id = (authors.id)
+  author.textContent =book.id
+  //console.log (author)
 
   info.appendChild(title);
   info.appendChild(author);
@@ -159,28 +160,31 @@ const handleThemeChange = () => {
   const saveButton = buttons[2]
 
   themeSelect.addEventListener('change',handleThemeChange);
-
-saveButton.addEventListener('click',handleThemeChange)
-
-
+  
+  const handleFormSubmit = (event) => {
+    event.preventDefault(); // Prevent the default form submission
+    handleThemeChange();// theme change
+    dataSettingOverlay.removeAttribute('open'); 
+  };
   console.log (saveButton)
-// saveButton.addEventListener("click",handleThemeChange())
+saveButton.addEventListener("click",handleFormSubmit)
+
 // Add an event listener to the theme select element
 
-
-
-
-// Optionally, you can initialize the theme based on user preference (e.g., from local storage)
-// const userPreferredTheme = localStorage.getItem('theme');
-// if (userPreferredTheme) {
-//   themeSelect.value = userPreferredTheme;
-//   handleThemeChange();
-// }
-
-    
-    
  const dataSettingForm =document.querySelector('[data-settings-form]')
-    
+ console.log (dataSettingForm)
+
+ 
+ 
+ /*dataSettingOverlay.submit; {
+    //preventDefault()
+    const formData = new FormData(event.target)
+    const result = Object.fromEntries(formData)
+    document.documentElement.style.setProperty('--color-dark', css[result.theme].dark);
+    document.documentElement.style.setProperty('--color-light', css[result.theme].light);
+   
+}
+
     //data-settings-theme.value === window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'day'
    // v = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches? 'night' | 'day';
     
@@ -196,6 +200,8 @@ showMoreButton.innerHTML ='show more'
         showMoreButton.disabled=true
     }
     
+
+
     /*
     `[
         '<span>Show more</span>',
@@ -280,15 +286,6 @@ showMoreButton.innerHTML ='show more'
        /* window.scrollTo({ top: 0, behavior: 'smooth' });
         data-search-overlay.open = false
     
-    
-    data-settings-overlay.submit; {
-        preventDefault()
-        const formData = new FormData(event.target)
-        const result = Object.fromEntries(formData)
-        document.documentElement.style.setProperty('--color-dark', css[result.theme].dark);
-        document.documentElement.style.setProperty('--color-light', css[result.theme].light);
-        data-settings-overlay).open === false
-    }
     
     data-list-items.click() {
         pathArray = Array.from(event.path || event.composedPath())
