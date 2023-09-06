@@ -13,6 +13,9 @@ let range =[
 if (!books && Array.isArray(books)) throw new Error('Source required') 
 if (!range && range.length < 2) throw new Error('Range must be an array with two numbers')
 
+const fragment2 = document.createDocumentFragment()
+
+
 const fragment = document.createDocumentFragment()
 const createPreview = (book)=> {
     const preview = document.createElement('div');
@@ -33,7 +36,7 @@ const createPreview = (book)=> {
   const author = document.createElement('p');
   author.classList.add('preview__author');
   
-  
+    
   //const authorName = authors[books.id]
  // console.log (books.author)
   for (const bookId in books) {
@@ -46,26 +49,31 @@ const createPreview = (book)=> {
   
   // book.id = (authors.id)
   author.textContent =book.id
+
+  
   //console.log (author)
 
   info.appendChild(title);
   info.appendChild(author);
+  
   preview.appendChild(image);
   preview.appendChild(info);
+
 
   return preview;
    }
   
 
-   const extracted= books.slice(0, 100)
+   let extracted= books.slice(0, 100)
    for (let i = 0; i < extracted.length; i++) {
    //console.log (extracted)
-     const { author, image, title, id }=  extracted[i] 
+     const { author, image, title, id  }=  extracted[i] 
         const preview = createPreview({
             author,
             id,
             image,
-            title
+            title,
+            
         })
     
         fragment.appendChild(preview)
@@ -75,7 +83,12 @@ const searchbar =document.querySelector(".header__icon ")
 console.log (searchbar)
    const bookShelf = document.querySelector("[data-list-items]")
     bookShelf.appendChild(fragment)
+    console.log(bookShelf)
 
+  console.log(books[title])
+    const description = books.description;
+     console.log(description)
+bookShelf.appendChild(description)
     //bookShelf.innerHTML = ''
     //fragment = document.createDocumentFragment()
      //extracted= 
@@ -186,11 +199,65 @@ showMoreButton.innerHTML ='show more'
     }
    const dataListActive =document.querySelector ('[data-list-active]')
    console.log (dataListActive)
+
     const overlayPreview= document.querySelector('.overlay__preview')
- const handelPreview=()=>{
+  let dataListImage = document.querySelector('[data-list-image ]')
+  console.log(dataListImage)
+
+  const datalistTitle = document.querySelector("[data-list-title]")
+  const dataListDesciption=document.querySelector('[data-list-description]')
+
+
+ const handlePreview=(book)=>{
 dataListActive.show()
+
+datalistTitle.textContent=book.title
+dataListImage.src=book.image
+dataListDesciption.textContent=book.description
 }
- window.addEventListener('click', handelPreview)
+//const bookShelf = document.querySelector("[data-list-items]");
+
+
+
+
+
+//desciption.textContent= books.desciption.appendChild(desciption)
+
+// ... (your existing code for createPreview function)
+
+// Function to create a book description element
+
+
+//overlayPreview.appendChild(description)
+  //console.log (description)
+ /*extracted = books.slice(0, 100);
+  for (let i = 0; i < extracted.length; i++) {
+    const { author, image, title, id, description } = extracted[i];
+    const preview = createPreview({ author, id, image, title , });
+    if (description) {
+      const descriptionElement = createDescription(description);
+      preview.appendChild(descriptionElement);
+    }
+    fragment.appendChild(preview);
+  }*/
+  
+  // ... (the rest of your code)
+  const previews = document.querySelectorAll('.preview')
+
+previews.forEach((bookElement) => {
+  bookElement.addEventListener("click", () => {
+    const book = {
+      image: bookElement.querySelector("img").src,
+      title: bookElement.querySelector("h3").textContent,
+      description: bookElement.querySelector('p').textContent,
+      //desciption :bookElement.querySelector('p').textContent,
+      //description: bookElement.querySelector('')
+      // Add other book properties as needed
+    };
+    handlePreview(book);})
+});
+
+//bookShelf.addEventListener('click', handlePreview)
 
     /*
 
