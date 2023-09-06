@@ -154,14 +154,21 @@ const handleThemeChange = () => {
       rootElement.style.setProperty('--color-dark', nightDarkColor);
     }
   };
-  
+
   const buttons = document.querySelectorAll('.overlay__button_primary');
-  const saveButton = buttons[0]
- saveButton.addEventListener("click", () => console.log('hi'))
+  const saveButton = buttons[2]
+
+  themeSelect.addEventListener('change',handleThemeChange);
+
+saveButton.addEventListener('click',handleThemeChange)
+
+
+  console.log (saveButton)
+// saveButton.addEventListener("click",handleThemeChange())
 // Add an event listener to the theme select element
 
 
-themeSelect.addEventListener('change',console.log ('i was pressed'));
+
 
 // Optionally, you can initialize the theme based on user preference (e.g., from local storage)
 // const userPreferredTheme = localStorage.getItem('theme');
