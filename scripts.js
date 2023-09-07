@@ -296,27 +296,25 @@ const handleSubmit = (event) => {
   console.log("Submit button clicked");
   event.preventDefault();
   const selectedAuthor = searchAuthorsSelect.value.toLowerCase();
-
   const searchTerm = searchTitle.value.toLowerCase();
-  console.log (searchTerm)
 
   const filteredBooks = books.filter((book) => {
-    const authorMatch = selectedAuthor === authors[book.author].toLowerCase();
-    const titleMatch = book.title.toLowerCase().includes(searchTerm);
-    
-    console.log('Book:', book.title, 'Author:', book.author, "title",titleMatch, 'Author Match:', authorMatch);
-    
-    return authorMatch && titleMatch;
-  })
-  
+    const authorMatch =
+      selectedAuthor === 'all authors' || // Check if 'All Authors' is selected
+      authors[book.author].toLowerCase().includes(selectedAuthor); // Check if the author name contains the selected author
 
-  bookShelf.innerHTML=''
-  console.log(filteredBooks)
+    const titleMatch = book.title.toLowerCase().includes(searchTerm);
+
+    console.log('Book:', book.title, 'Author:', book.author, 'Author Match:', authorMatch);
+    return authorMatch && titleMatch;
+  });
+
+  bookShelf.innerHTML = '';
+  console.log(filteredBooks);
+
   filteredBooks.forEach((book) => {
-    
     const bookElement = createPreview(book);
     bookShelf.appendChild(bookElement);
-   
   });
  searchOverlay.close()
   //handlePreview()
