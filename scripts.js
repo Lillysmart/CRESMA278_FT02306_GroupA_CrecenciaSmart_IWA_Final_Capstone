@@ -4,6 +4,7 @@ const matches = books
   import { books } from './data.js';
   import { authors } from './data.js';
   import { BOOKS_PER_PAGE } from './data.js';
+  import { genres } from './data.js';
  
  
  //console.log (authors)
@@ -292,6 +293,10 @@ const handlesearchOverlay =()=>{
 }
 searchCancelButton.addEventListener('click',handlesearchOverlay)
 
+const errorMessage = document.createElement('p');
+errorMessage.textContent='Filter is too narrow. No results found.'
+bookShelf.appendChild(errorMessage)
+
 const handleSubmit = (event) => {
   console.log("Submit button clicked");
   event.preventDefault();
@@ -317,7 +322,7 @@ const handleSubmit = (event) => {
     bookShelf.appendChild(bookElement);
   });
  searchOverlay.close()
-  //handlePreview()
+  
 }
 searchSubmitBtn.addEventListener('click',handleSubmit)
 console.log (bookShelf)
