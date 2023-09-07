@@ -13,6 +13,7 @@ let range =[
 if (!books && Array.isArray(books)) throw new Error('Source required') 
 if (!range && range.length < 2) throw new Error('Range must be an array with two numbers')
 
+
 const fragment = document.createDocumentFragment()
 const createPreview = (book)=> {
     const preview = document.createElement('div');
@@ -32,7 +33,9 @@ const createPreview = (book)=> {
 
   const author = document.createElement('p');
   author.classList.add('preview__author');
-  
+  const authorName = authors[book.author];
+  author.textContent = authorName;
+  //author.textContent =authors.id
 
   const description = document.createElement('p');
   description.classList.add('preview__description');
@@ -45,22 +48,7 @@ const createPreview = (book)=> {
   published.textContent=( new Date (book.published).getFullYear())
   published.style.display='none'
 
-  //const authorName = authors[books.id]
- // console.log (books.author)
-  for (const bookId in books) {
-    if (books.hasOwnProperty(bookId)) {
-      books[bookId].author = authors[bookId];
-    }
-  }
-  
-  //console.log(books); // This will give you books with the author property added
-  
-  // book.id = (authors.id)
-  author.textContent =book.id
-
-  
-  //console.log (author)
-
+ 
   info.appendChild(title);
   info.appendChild(author);
   info.appendChild(description);
@@ -68,12 +56,12 @@ const createPreview = (book)=> {
 
   preview.appendChild(image);
   preview.appendChild(info);
-console.log (published)
+
 
   return preview;
 
-   }
-  
+}
+
 
    let extracted= books.slice(0, 100)
    for (let i = 0; i < extracted.length; i++) {
@@ -226,7 +214,7 @@ datalistTitle.textContent=book.title
 dataListImage.src=book.image
 dataListDesciption.textContent=book.description
 
-dataListSubtitle.textContent=book.published
+dataListSubtitle.textContent=` ${book.author} ( ${(book.published)})`
 console.log(dataListSubtitle)
 }
 
@@ -240,6 +228,7 @@ previews.forEach((bookElement) => {
       title: bookElement.querySelector("h3").textContent,
       description: bookElement.querySelector('.preview__description').textContent,
       published : bookElement.querySelector('.preview__published').textContent,
+      author :bookElement.querySelector('.preview__author').textContent
       //desciption :bookElement.querySelector('p').textContent,
       //description: bookElement.querySelector('')
       // Add other book properties as needed
@@ -253,6 +242,24 @@ dataListActive.close()
 }
 const dataListClose=document.querySelector('[data-list-close]')
 dataListClose.addEventListener('click',handleClosePreview)
+
+
+const SearchTopButton= document.querySelector('[data-header-search]')
+const searchOverlay= document.querySelector('[data-search-overlay]')
+const searchTitle = document.querySelector('[data-search-title]')
+searchOverlayButtons =document.querySelector('.overlay__button overlay__button_primary')
+const searchButton= buttons[3]
+console.log(searchButton)
+
+const handleSerchButton =(any)=>{
+searchOverlay.show()
+//searchTitle.focus()
+
+
+}
+
+SearchTopButton.addEventListener("click", handleSerchButton)
+
 //previews.addEventListener('click', handlePreview)
 
     /*
