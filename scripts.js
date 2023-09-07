@@ -3,6 +3,7 @@ const matches = books
 
   import { books } from './data.js';
   import { authors } from './data.js';
+  import { BOOKS_PER_PAGE } from './data.js';
  
  
  //console.log (authors)
@@ -113,10 +114,11 @@ console.log (searchbar)
         fragment.appendChild(element)
     }*/
 
-    import { BOOKS_PER_PAGE } from './data.js';
+    
 
  const headerSettingButton = document.querySelector('[data-header-settings]')
  const dataSettingOverlay = document.querySelector('[data-settings-overlay]')
+
 const openDataSettingsOverlay =()=>{
     dataSettingOverlay.show()}
 
@@ -241,6 +243,7 @@ previews.forEach((bookElement) => {
 const handleClosePreview=()=>{
 dataListActive.close()
 }
+
 const dataListClose=document.querySelector('[data-list-close]')
 dataListClose.addEventListener('click',handleClosePreview)
 
@@ -260,33 +263,66 @@ searchOverlay.show()
 }
 
 SearchTopButton.addEventListener("click", handleSerchButton)
-
+/*
 const handleSearchSubmit =()=>{
  bookShelf.show (searchTitle)
 }
-searchSubmitBtn.addEventListener("click",handleSearchSubmit )
+searchSubmitBtn.addEventListener("click",handleSearchSubmit )*/
 
 const searchAuthorsSelect = document.querySelector('[data-search-authors]');
 const searchCancelButton = document.querySelector('[data-search-cancel]');
 const searchForm = document.querySelector('[data-search-form]')
 
-authors.forEach((author) => {
-  const option = document.createElement('option');
-  option.value = author;
-  option.textContent = author;
-  searchAuthorsSelect.appendChild(option);
-});
+const placeHolder = document.createElement('option')
+placeHolder.textContent= "All Authors"
+searchAuthorsSelect.appendChild(placeHolder)
 
+for (const authorId in authors) {
+  if (authors.hasOwnProperty(authorId)) {
+    const authorName = authors[authorId];
+  const option = document.createElement('option');
+  option.value = authorName;
+  option.textContent = authorName;
+  searchAuthorsSelect.appendChild(option);
+};
+}
 
 const handlesearchOverlay =()=>{
   searchOverlay.style.display = 'none';
 }
 searchCancelButton.addEventListener('click',handlesearchOverlay)
 
-const handleSubmit =(event)=>{
+const handleSubmit = (event) => {
+  console.log("Submit button clicked");
   event.preventDefault();
+  const selectedAuthor = searchAuthorsSelect.value.toLowerCase();
+
+  const searchTerm = searchTitle.value.toLowerCase();
+  console.log (searchTerm)
+
+  const filteredBooks = books.filter((book) => {
+    const authorMatch = selectedAuthor === authors[book.author].toLowerCase();
+    const titleMatch = book.title.toLowerCase().includes(searchTerm);
+    
+    console.log('Book:', book.title, 'Author:', book.author, "title",titleMatch, 'Author Match:', authorMatch);
+    
+    return authorMatch && titleMatch;
+  })
+  
+
+  bookShelf.innerHTML=''
+  console.log(filteredBooks)
+  filteredBooks.forEach((book) => {
+    
+    const bookElement = createPreview(book);
+    bookShelf.appendChild(bookElement);
+   
+  });
+ searchOverlay.close()
+  //handlePreview()
 }
-searchForm.addEventListener('submit',handleSubmit)
+searchSubmitBtn.addEventListener('click',handleSubmit)
+console.log (bookShelf)
 
 //previews.addEventListener('click', handlePreview)
 
