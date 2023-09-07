@@ -273,10 +273,30 @@ searchSubmitBtn.addEventListener("click",handleSearchSubmit )*/
 const searchAuthorsSelect = document.querySelector('[data-search-authors]');
 const searchCancelButton = document.querySelector('[data-search-cancel]');
 const searchForm = document.querySelector('[data-search-form]')
+ const searchGenreSelect= document.querySelector('[data-search-genres]') 
+      
+
 
 const placeHolder = document.createElement('option')
 placeHolder.textContent= "All Authors"
 searchAuthorsSelect.appendChild(placeHolder)
+
+// Create an option for "All Genres"
+const allGenresOption = document.createElement('option');
+allGenresOption.value = 'any';
+allGenresOption.textContent = 'All Genres';
+searchGenreSelect.appendChild(allGenresOption);
+
+// Add genre options from the genres array
+for (const genreId in genres) {
+  if (genres.hasOwnProperty(genreId)) {
+    const genreName = genres[genreId];
+    const option = document.createElement('option');
+    option.value = genreId;
+    option.textContent = genreName;
+    searchGenreSelect.appendChild(option);
+  }
+}
 
 for (const authorId in authors) {
   if (authors.hasOwnProperty(authorId)) {
@@ -302,6 +322,7 @@ const handleSubmit = (event) => {
   event.preventDefault();
   const selectedAuthor = searchAuthorsSelect.value.toLowerCase();
   const searchTerm = searchTitle.value.toLowerCase();
+  const selectedGenre = searchGenreSelect.value;
 
   const filteredBooks = books.filter((book) => {
     const authorMatch =
@@ -310,8 +331,13 @@ const handleSubmit = (event) => {
 
     const titleMatch = book.title.toLowerCase().includes(searchTerm);
 
-    console.log('Book:', book.title, 'Author:', book.author, 'Author Match:', authorMatch);
-    return authorMatch && titleMatch;
+    const genreMatch = 
+  selectedGenre === 'any' ||
+  book.genres.some(genre => genre.toLowerCase() === selectedGenre.toLowerCase());
+
+    
+    console.log('Book:', book.title, 'Author:', book.author, 'Author Match:', authorMatch, 'genre:',genreMatch);
+    return authorMatch && titleMatch && genreMatch;
   });
 
   bookShelf.innerHTML = '';
