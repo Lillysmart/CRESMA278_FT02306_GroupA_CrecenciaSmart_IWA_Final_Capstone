@@ -170,6 +170,7 @@ const handleThemeChange = () => {
   const buttons = document.querySelectorAll('.overlay__button_primary');
   const saveButton = buttons[2]
 
+
   themeSelect.addEventListener('change',handleThemeChange);
   
   const handleFormSubmit = (event) => {
@@ -247,18 +248,45 @@ dataListClose.addEventListener('click',handleClosePreview)
 const SearchTopButton= document.querySelector('[data-header-search]')
 const searchOverlay= document.querySelector('[data-search-overlay]')
 const searchTitle = document.querySelector('[data-search-title]')
-searchOverlayButtons =document.querySelector('.overlay__button overlay__button_primary')
-const searchButton= buttons[3]
-console.log(searchButton)
+
+
+const SearchTop = document.querySelectorAll('.overlay__button_primary');
+const searchSubmitBtn = buttons[1]
+console.log(searchSubmitBtn)
 
 const handleSerchButton =(any)=>{
 searchOverlay.show()
 //searchTitle.focus()
-
-
 }
 
 SearchTopButton.addEventListener("click", handleSerchButton)
+
+const handleSearchSubmit =()=>{
+ bookShelf.show (searchTitle)
+}
+searchSubmitBtn.addEventListener("click",handleSearchSubmit )
+
+const searchAuthorsSelect = document.querySelector('[data-search-authors]');
+const searchCancelButton = document.querySelector('[data-search-cancel]');
+const searchForm = document.querySelector('[data-search-form]')
+
+authors.forEach((author) => {
+  const option = document.createElement('option');
+  option.value = author;
+  option.textContent = author;
+  searchAuthorsSelect.appendChild(option);
+});
+
+
+const handlesearchOverlay =()=>{
+  searchOverlay.style.display = 'none';
+}
+searchCancelButton.addEventListener('click',handlesearchOverlay)
+
+const handleSubmit =(event)=>{
+  event.preventDefault();
+}
+searchForm.addEventListener('submit',handleSubmit)
 
 //previews.addEventListener('click', handlePreview)
 
