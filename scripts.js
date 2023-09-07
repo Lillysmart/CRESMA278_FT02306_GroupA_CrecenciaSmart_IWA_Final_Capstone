@@ -1,5 +1,6 @@
 const matches = books
- const  page = 1;
+ let  page = 1;
+  //BOOKS_PER_PAGE=35
 
   import { books } from './data.js';
   import { authors } from './data.js';
@@ -59,13 +60,15 @@ const createPreview = (book)=> {
   preview.appendChild(image);
   preview.appendChild(info);
 
-
+  preview.addEventListener('click', () => {
+    handlePreview(book);
+  });
   return preview;
 
 }
 
 
-   let extracted= books.slice(0, 100)
+   let extracted= books.slice(0, books.length)
    for (let i = 0; i < extracted.length; i++) {
    //console.log (extracted)
      const { author, image, title, id ,description, published }=  extracted[i] 
@@ -87,35 +90,7 @@ console.log (searchbar)
     bookShelf.appendChild(fragment)
     console.log(bookShelf)
 
-  
-//bookShelf.appendChild(description)
-    //bookShelf.innerHTML = ''
-    //fragment = document.createDocumentFragment()
-     //extracted= 
-/*
-    for (let i=1;{ author, image, title, id }=extracted; i++) {
-        const { author: authorId, id, image, title } = props
 
-        element = document.createElement('button')
-        element.classList = 'preview'
-        element.setAttribute('data-preview', id)
-
-        element.innerHTML = /* html `
-            <img
-                class="preview__image"
-                src="${image}"
-            />
-            
-            <div class="preview__info">
-                <h3 class="preview__title">${title}</h3>
-                <div class="preview__author">${authors[authorId]}</div>
-            </div>
-        `
-
-        fragment.appendChild(element)
-    }*/
-
-    
 
  const headerSettingButton = document.querySelector('[data-header-settings]')
  const dataSettingOverlay = document.querySelector('[data-settings-overlay]')
@@ -193,12 +168,38 @@ saveButton.addEventListener("click",handleFormSubmit)
   
 showMoreButton.innerHTML ='show more'
 
-    //showMoreButton = Show (books.length - BOOKS_PER_PAGE)
+// ...
 
+// Adjust the number of books per page as needed
 
-    if ((!matches.length - page * BOOKS_PER_PAGE > 0)){
+function loadMoreBooks() {
+  const nextPageStart = page * BOOKS_PER_PAGE;
+  const nextPageEnd = nextPageStart + BOOKS_PER_PAGE;
+
+  const extracted = books.slice(nextPageStart, nextPageEnd);
+  const fragment = document.createDocumentFragment();
+
+  for (let i = 0; i < extracted.length; i++) {
+    const book = extracted[i];
+    const preview = createPreview(book);
+    fragment.appendChild(preview);
+  }
+
+  bookShelf.appendChild(fragment);
+  page++;
+}
+
+// Load the initial books
+loadMoreBooks();
+
+showMoreButton.addEventListener("click", loadMoreBooks)
+
+//showMoreButton.addEventListener('click', handleShowMoreClick);
+    /*if ((matches.length - page * BOOKS_PER_PAGE > 0)){
         showMoreButton.disabled=true
-    }
+    }*/
+
+console.log(page)
    const dataListActive =document.querySelector ('[data-list-active]')
    console.log (dataListActive)
 
@@ -220,6 +221,7 @@ dataListDesciption.textContent=book.description
 
 dataListSubtitle.textContent=` ${book.author} ( ${(book.published)})`
 console.log(dataListSubtitle)
+document.body.appendChild(bookOverlay);
 }
 
   const previews = document.querySelectorAll('.preview')
@@ -314,7 +316,7 @@ const handlesearchOverlay =()=>{
 searchCancelButton.addEventListener('click',handlesearchOverlay)
 
 const errorMessage = document.createElement('p');
-errorMessage.textContent='Filter is too narrow. No results found.'
+errorMessage.textContent=''
 bookShelf.appendChild(errorMessage)
 
 const handleSubmit = (event) => {
@@ -342,11 +344,16 @@ const handleSubmit = (event) => {
 
   bookShelf.innerHTML = '';
   console.log(filteredBooks);
-
+  if (filteredBooks.length === 0) {
+    // If no results are found, display the error message
+    const errorMessage = document.createElement('p');
+    errorMessage.textContent = 'Filter is too narrow. No results found.';
+    bookShelf.appendChild(errorMessage);
+  } else{
   filteredBooks.forEach((book) => {
     const bookElement = createPreview(book);
     bookShelf.appendChild(bookElement);
-  });
+  })};
  searchOverlay.close()
   
 }
