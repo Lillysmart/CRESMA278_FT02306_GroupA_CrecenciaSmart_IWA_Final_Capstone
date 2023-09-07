@@ -13,9 +13,6 @@ let range =[
 if (!books && Array.isArray(books)) throw new Error('Source required') 
 if (!range && range.length < 2) throw new Error('Range must be an array with two numbers')
 
-const fragment2 = document.createDocumentFragment()
-
-
 const fragment = document.createDocumentFragment()
 const createPreview = (book)=> {
     const preview = document.createElement('div');
@@ -36,7 +33,18 @@ const createPreview = (book)=> {
   const author = document.createElement('p');
   author.classList.add('preview__author');
   
-    
+
+  const description = document.createElement('p');
+  description.classList.add('preview__description');
+  description.textContent = book.description
+  description.style.display = 'none';
+
+  const published= document.createElement('p')
+  published.classList.add('preview__published')
+  //const yearpublished=published.getFullYear()
+  published.textContent=( new Date (book.published).getFullYear())
+  published.style.display='none'
+
   //const authorName = authors[books.id]
  // console.log (books.author)
   for (const bookId in books) {
@@ -55,25 +63,29 @@ const createPreview = (book)=> {
 
   info.appendChild(title);
   info.appendChild(author);
-  
+  info.appendChild(description);
+  info.appendChild(published);
+
   preview.appendChild(image);
   preview.appendChild(info);
-
+console.log (published)
 
   return preview;
+
    }
   
 
    let extracted= books.slice(0, 100)
    for (let i = 0; i < extracted.length; i++) {
    //console.log (extracted)
-     const { author, image, title, id  }=  extracted[i] 
+     const { author, image, title, id ,description, published }=  extracted[i] 
         const preview = createPreview({
             author,
             id,
             image,
             title,
-            
+            description,
+           published,
         })
     
         fragment.appendChild(preview)
@@ -85,10 +97,8 @@ console.log (searchbar)
     bookShelf.appendChild(fragment)
     console.log(bookShelf)
 
-  console.log(books[title])
-    const description = books.description;
-     console.log(description)
-bookShelf.appendChild(description)
+  
+//bookShelf.appendChild(description)
     //bookShelf.innerHTML = ''
     //fragment = document.createDocumentFragment()
      //extracted= 
@@ -204,9 +214,10 @@ showMoreButton.innerHTML ='show more'
   let dataListImage = document.querySelector('[data-list-image ]')
   console.log(dataListImage)
 
-  const datalistTitle = document.querySelector("[data-list-title]")
+  const datalistTitle = document.querySelector('[data-list-title]')
   const dataListDesciption=document.querySelector('[data-list-description]')
-
+  const dataListSubtitle= document.querySelector('[data-list-subtitle]')
+//const yearpublished=published.getFullYear()
 
  const handlePreview=(book)=>{
 dataListActive.show()
@@ -214,42 +225,21 @@ dataListActive.show()
 datalistTitle.textContent=book.title
 dataListImage.src=book.image
 dataListDesciption.textContent=book.description
+
+dataListSubtitle.textContent=book.published
+console.log(dataListSubtitle)
 }
-//const bookShelf = document.querySelector("[data-list-items]");
 
-
-
-
-
-//desciption.textContent= books.desciption.appendChild(desciption)
-
-// ... (your existing code for createPreview function)
-
-// Function to create a book description element
-
-
-//overlayPreview.appendChild(description)
-  //console.log (description)
- /*extracted = books.slice(0, 100);
-  for (let i = 0; i < extracted.length; i++) {
-    const { author, image, title, id, description } = extracted[i];
-    const preview = createPreview({ author, id, image, title , });
-    if (description) {
-      const descriptionElement = createDescription(description);
-      preview.appendChild(descriptionElement);
-    }
-    fragment.appendChild(preview);
-  }*/
-  
-  // ... (the rest of your code)
   const previews = document.querySelectorAll('.preview')
+  //const pUnderPreview =document.querySelectorAll("p")
 
 previews.forEach((bookElement) => {
   bookElement.addEventListener("click", () => {
     const book = {
       image: bookElement.querySelector("img").src,
       title: bookElement.querySelector("h3").textContent,
-      description: bookElement.querySelector('p').textContent,
+      description: bookElement.querySelector('.preview__description').textContent,
+      published : bookElement.querySelector('.preview__published').textContent,
       //desciption :bookElement.querySelector('p').textContent,
       //description: bookElement.querySelector('')
       // Add other book properties as needed
@@ -257,7 +247,13 @@ previews.forEach((bookElement) => {
     handlePreview(book);})
 });
 
-//bookShelf.addEventListener('click', handlePreview)
+
+const handleClosePreview=()=>{
+dataListActive.close()
+}
+const dataListClose=document.querySelector('[data-list-close]')
+dataListClose.addEventListener('click',handleClosePreview)
+//previews.addEventListener('click', handlePreview)
 
     /*
 
