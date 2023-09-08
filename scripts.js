@@ -6,35 +6,39 @@ import { authors } from "./data.js";
 import { BOOKS_PER_PAGE } from "./data.js";
 import { genres } from "./data.js";
 
-//console.log (authors)
-let range = [2, "hi", 6];
-
+/**
+ * check if books exist and that it is an array 
+ */
 if (!books && Array.isArray(books)) throw new Error("Source required");
-if (!range && range.length < 2)
-  throw new Error("Range must be an array with two numbers");
 
+/**
+ * a fragment to put the books array imported  in 
+ */
 const fragment = document.createDocumentFragment();
+
+/**
+ * create elements and give the elements values/textContent from the books & author,
+ * then append the elements to preview(div) , when clicked open an overlay
+ * @param {} book 
+ * @returns preview(div),where everthing is appended 
+ */
 const createPreview = (book) => {
   const preview = document.createElement("div");
   preview.classList.add("preview");
 
   const image = document.createElement("img");
-  //image.classList.add('preview__image');
   image.src = book.image;
 
   const info = document.createElement("div");
-  //info.classList.add('preview__info');
-
+ 
   const title = document.createElement("h3");
-  //title.classList.add('preview__title'); // Add a class to the title element (if needed)
   title.textContent = book.title; // Set the title text
 
   const author = document.createElement("p");
   author.classList.add("preview__author");
   const authorName = authors[book.author];
   author.textContent = authorName;
-  //author.textContent =authors.id
-
+  
   const description = document.createElement("p");
   description.classList.add("preview__description");
   description.textContent = book.description;
@@ -42,7 +46,6 @@ const createPreview = (book) => {
 
   const published = document.createElement("p");
   published.classList.add("preview__published");
-  //const yearpublished=published.getFullYear()
   published.textContent = new Date(book.published).getFullYear();
   published.style.display = "none";
 
