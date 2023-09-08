@@ -83,9 +83,7 @@ for (let i = 0; i < extracted.length; i++) {
 }
 
 const searchbar = document.querySelector(".header__icon ");
-
 const bookShelf = document.querySelector("[data-list-items]");
-
 bookShelf.appendChild(fragment);
 
 
@@ -120,12 +118,9 @@ const dayLightColor = day.light;
 const nightLightColor = night.light;
 const nightDarkColor = night.dark;
 
-console.log(dayDarkColor);
-console.log(nightLightColor);
 
-// Get references to the select element and the root HTML element
 const themeSelect = document.querySelector("[data-settings-theme]");
-const rootElement = document.documentElement;
+const rootElement = document.documentElement;// reference of the root HTML element
 
 // Function to handle theme change
 const handleThemeChange = () => {
@@ -154,8 +149,6 @@ const handleFormSubmit = (event) => {
 console.log(saveButton);
 saveButton.addEventListener("click", handleFormSubmit);
 
-// Add an event listener to the theme select element
-
 const dataSettingForm = document.querySelector("[data-settings-form]");
 console.log(dataSettingForm);
 
@@ -163,9 +156,8 @@ const showMoreButton = document.querySelector("[data-list-button]");
 
 showMoreButton.innerHTML = "show more";
 
-// ...
 
-// Adjust the number of books per page as needed
+// Adjust the number of books per page 
 const totalBooks = matches.length;
 let displayedBooks = 0;
 
@@ -199,20 +191,10 @@ function loadMoreBooks() {
 
   page++;
 }
-// - [page * BOOKS_PER_PAGE]
 
-//remaining === hasRemaining ? initial : 0
-//data-list-button.disabled = initial > 0
-
-// Load the initial books
 loadMoreBooks();
 
 showMoreButton.addEventListener("click", loadMoreBooks);
-
-//showMoreButton.addEventListener('click', handleShowMoreClick);
-/*if ((matches.length - page * BOOKS_PER_PAGE > 0)){
-        showMoreButton.disabled=true
-    }*/
 
 console.log(page);
 const dataListActive = document.querySelector("[data-list-active]");
