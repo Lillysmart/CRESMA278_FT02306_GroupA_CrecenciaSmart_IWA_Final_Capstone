@@ -203,11 +203,10 @@ console.log(dataListActive);
 const overlayPreview = document.querySelector(".overlay__preview");
 let dataListImage = document.querySelector("[data-list-image ]");
 console.log(dataListImage);
-//bookOverlay = document.querySelector('[]')
+
 const datalistTitle = document.querySelector("[data-list-title]");
 const dataListDesciption = document.querySelector("[data-list-description]");
 const dataListSubtitle = document.querySelector("[data-list-subtitle]");
-//const yearpublished=published.getFullYear()
 
 const handlePreview = (book) => {
   dataListActive.show();
@@ -227,7 +226,6 @@ const handlePreview = (book) => {
 };
 
 const previews = document.querySelectorAll(".preview");
-//const pUnderPreview =document.querySelectorAll("p")
 
 previews.forEach((bookElement) => {
   bookElement.addEventListener("click", () => {
@@ -238,9 +236,6 @@ previews.forEach((bookElement) => {
         .textContent,
       published: bookElement.querySelector(".preview__published").textContent,
       author: bookElement.querySelector(".preview__author").textContent,
-      //desciption :bookElement.querySelector('p').textContent,
-      //description: bookElement.querySelector('')
-      // Add other book properties as needed
     };
     handlePreview(book);
   });
@@ -267,11 +262,7 @@ const handleSerchButton = (any) => {
 };
 
 SearchTopButton.addEventListener("click", handleSerchButton);
-/*
-const handleSearchSubmit =()=>{
- bookShelf.show (searchTitle)
-}
-searchSubmitBtn.addEventListener("click",handleSearchSubmit )*/
+
 
 const searchAuthorsSelect = document.querySelector("[data-search-authors]");
 const searchCancelButton = document.querySelector("[data-search-cancel]");
@@ -328,8 +319,9 @@ const handleSubmit = (event) => {
   const filteredBooks = books.filter((book) => {
     const authorMatch =
       selectedAuthor === "all authors" || // Check if 'All Authors' is selected
-      authors[book.author].toLowerCase().includes(selectedAuthor); // Check if the author name contains the selected author
 
+      // Check if the author name contains the selected author
+      authors[book.author].toLowerCase().includes(selectedAuthor); 
     const titleMatch = book.title.toLowerCase().includes(searchTerm);
 
     const genreMatch =
@@ -337,17 +329,6 @@ const handleSubmit = (event) => {
       book.genres.some(
         (genre) => genre.toLowerCase() === selectedGenre.toLowerCase()
       );
-
-    console.log(
-      "Book:",
-      book.title,
-      "Author:",
-      book.author,
-      "Author Match:",
-      authorMatch,
-      "genre:",
-      genreMatch
-    );
     return authorMatch && titleMatch && genreMatch;
   });
 
