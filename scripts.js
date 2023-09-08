@@ -6,9 +6,7 @@ import { authors } from "./data.js";
 import { BOOKS_PER_PAGE } from "./data.js";
 import { genres } from "./data.js";
 
-/**
- * check if books exist and that it is an array 
- */
+// check if books exist and that it is an array 
 if (!books && Array.isArray(books)) throw new Error("Source required");
 
 /**
@@ -18,9 +16,9 @@ const fragment = document.createDocumentFragment();
 
 /**
  * create elements and give the elements values/textContent from the books & author,
- * then append the elements to preview(div) , when clicked open an overlay
+ * then append the elements to preview(div) and when the preview is clicked open an overlay
  * @param {} book 
- * @returns preview(div),where everthing is appended 
+ * @returns preview(div),where everything is appended 
  */
 const createPreview = (book) => {
   const preview = document.createElement("div");
@@ -63,10 +61,15 @@ const createPreview = (book) => {
   return preview;
 };
 
+ //take every index in the books array
 let extracted = books.slice(0, books.length);
+/**
+ * loop over extracted ,and take some properties
+ *  create a book preview for every book using the createPreview function,
+ *  and appends these previews to a fragment. 
+ */
 for (let i = 0; i < extracted.length; i++) {
-  //console.log (extracted)
-  const { author, image, title, id, description, published } = extracted[i];
+  const { author, image, title, id, description, published } = extracted[i];//destructuring
   const preview = createPreview({
     author,
     id,
@@ -80,10 +83,11 @@ for (let i = 0; i < extracted.length; i++) {
 }
 
 const searchbar = document.querySelector(".header__icon ");
-console.log(searchbar);
+
 const bookShelf = document.querySelector("[data-list-items]");
+
 bookShelf.appendChild(fragment);
-console.log(bookShelf);
+
 
 const headerSettingButton = document.querySelector("[data-header-settings]");
 const dataSettingOverlay = document.querySelector("[data-settings-overlay]");
