@@ -159,8 +159,12 @@ showMoreButton.innerHTML = "show more";
 
 // Adjust the number of books per page 
 const totalBooks = matches.length;
-let displayedBooks = 0;
-
+let displayedBooks = 0;// number of books currently displayed on the page
+/**
+ * It calculates the range of books to display on the next page,
+ *  creates HTML elements (previews) for those books, and appends them to the bookShelf element.
+ *  It also updates the displayedBooks count.
+ */
 function loadMoreBooks() {
   const nextPageStart = page * BOOKS_PER_PAGE;
   const nextPageEnd = nextPageStart + BOOKS_PER_PAGE;
@@ -226,7 +230,10 @@ const handlePreview = (book) => {
 };
 
 const previews = document.querySelectorAll(".preview");
-
+/**
+ * iterates over each book preview element in the previews NodeList 
+ * and adds a click event listener to each one.
+ */
 previews.forEach((bookElement) => {
   bookElement.addEventListener("click", () => {
     const book = {
@@ -242,8 +249,7 @@ previews.forEach((bookElement) => {
 });
 
 const handleClosePreview = () => {
-  dataListActive.close();
-};
+  dataListActive.close();};
 
 const dataListClose = document.querySelector("[data-list-close]");
 dataListClose.addEventListener("click", handleClosePreview);
@@ -263,7 +269,6 @@ const handleSerchButton = (any) => {
 
 SearchTopButton.addEventListener("click", handleSerchButton);
 
-
 const searchAuthorsSelect = document.querySelector("[data-search-authors]");
 const searchCancelButton = document.querySelector("[data-search-cancel]");
 const searchForm = document.querySelector("[data-search-form]");
@@ -275,7 +280,7 @@ searchAuthorsSelect.appendChild(placeHolder);
 
 // Create an option for "All Genres"
 const allGenresOption = document.createElement("option");
-allGenresOption.value = "any";
+//allGenresOption.value = "any";
 allGenresOption.textContent = "All Genres";
 searchGenreSelect.appendChild(allGenresOption);
 
