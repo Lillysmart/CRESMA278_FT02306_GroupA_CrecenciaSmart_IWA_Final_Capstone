@@ -280,7 +280,7 @@ searchAuthorsSelect.appendChild(placeHolder);
 
 // Create an option for "All Genres"
 const allGenresOption = document.createElement("option");
-//allGenresOption.value = "any";
+allGenresOption.value = "any";
 allGenresOption.textContent = "All Genres";
 searchGenreSelect.appendChild(allGenresOption);
 
