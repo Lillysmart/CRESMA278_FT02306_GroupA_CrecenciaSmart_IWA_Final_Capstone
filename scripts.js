@@ -60,7 +60,6 @@ const createPreview = (book) => {
   });
   return preview;
 };
-
  //take every index in the books array
 let extracted = books.slice(0, books.length);
 /**
@@ -136,10 +135,10 @@ const handleThemeChange = () => {
   }
 };
 
+themeSelect.addEventListener("change", handleThemeChange);
+
 const buttons = document.querySelectorAll(".overlay__button_primary");
 const saveButton = buttons[2];
-
-themeSelect.addEventListener("change", handleThemeChange);
 
 const handleFormSubmit = (event) => {
   event.preventDefault(); // Prevent the default form submission
@@ -200,13 +199,10 @@ loadMoreBooks();
 
 showMoreButton.addEventListener("click", loadMoreBooks);
 
-console.log(page);
-const dataListActive = document.querySelector("[data-list-active]");
-console.log(dataListActive);
 
+const dataListActive = document.querySelector("[data-list-active]");
 const overlayPreview = document.querySelector(".overlay__preview");
 let dataListImage = document.querySelector("[data-list-image ]");
-console.log(dataListImage);
 
 const datalistTitle = document.querySelector("[data-list-title]");
 const dataListDesciption = document.querySelector("[data-list-description]");
@@ -226,7 +222,6 @@ const handlePreview = (book) => {
     book.published
   ).getFullYear()})`;
   console.log(dataListSubtitle);
-  //document.body.appendChild(dataListActive);
 };
 
 const previews = document.querySelectorAll(".preview");
@@ -234,6 +229,7 @@ const previews = document.querySelectorAll(".preview");
  * iterates over each book preview element in the previews NodeList 
  * and adds a click event listener to each one.
  */
+/*
 previews.forEach((bookElement) => {
   bookElement.addEventListener("click", () => {
     const book = {
@@ -246,7 +242,7 @@ previews.forEach((bookElement) => {
     };
     handlePreview(book);
   });
-});
+});*/
 
 const handleClosePreview = () => {
   dataListActive.close();};
@@ -260,11 +256,9 @@ const searchTitle = document.querySelector("[data-search-title]");
 
 const SearchTop = document.querySelectorAll(".overlay__button_primary");
 const searchSubmitBtn = buttons[1];
-console.log(searchSubmitBtn);
 
 const handleSerchButton = (any) => {
   searchOverlay.show();
-  //searchTitle.focus()
 };
 
 SearchTopButton.addEventListener("click", handleSerchButton);
@@ -355,4 +349,4 @@ const handleSubmit = (event) => {
   showMoreButton.textContent = "Show More";
 };
 searchSubmitBtn.addEventListener("click", handleSubmit);
-console.log(bookShelf);
+
