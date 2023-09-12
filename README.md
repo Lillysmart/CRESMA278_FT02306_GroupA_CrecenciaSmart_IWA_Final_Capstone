@@ -1,5 +1,5 @@
 # CRESMA278_FT02306_GroupB_CrecenciaSmart_IWA_Final_Capstone
-👋Welcome to Crecencia's first javascript project . 
+👋Welcome to Crecencia's first javascript project. 
 # WHAT DID I CREATE?🤔
 -📚 *BOOK CONNECT WEB APP*
 # WHAT IS THIS APP , AND WHAT DOES IT DO?🤷🏾‍♀️
@@ -9,4 +9,5 @@
   making it easy to find your books of your interest .
 -  Users can click on book previews to access more information about a specific book.
 -  Users can toggle between dark and light mode.🔦
- 
+  # WHY DID I CREATE THIS APP ❔
+- This is to showacase my debugging skills.
