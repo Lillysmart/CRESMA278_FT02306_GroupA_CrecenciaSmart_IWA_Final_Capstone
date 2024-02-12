@@ -12,4 +12,4 @@
   # WHY DID I CREATE THIS APP ❔
 - This is to showacase my debugging skills.
    # DEPLOYMENT
--This Web App is deployed on https://fastidious-palmier-ebca99.netlify.app/
+- This Web App is deployed on https://fastidious-palmier-ebca99.netlify.app/
